@@ -5,48 +5,48 @@ import checkmarkIcon from "./assets/icon-checkbox-check.svg";
 import emailSent from "./assets/icon-success-check.svg";
 
 function App() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const [isChecked, setIsChecked] = useState(false);
-    const [selectedQueryType, setSelectedQueryType] = useState('');
-    const [errors, setErrors] = useState({});
-    const [isModalOpen, setIsModalOpen] = useState(false);
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const newErrors = {};
-      if (!firstName.trim()) newErrors.firstName = "This field is required";
-      if (!lastName.trim()) newErrors.lastName = "This field is required";
-  
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email.trim()) {
-        newErrors.email = "This field is required";
-      } else if (!emailRegex.test(email)) {
-        newErrors.email = "Please enter a valid email address";
-      }
-  
-      if (!selectedQueryType) newErrors.queryType = "Please select a query type";
-      if (!message.trim()) newErrors.message = "This field is required";
-      if (!isChecked) newErrors.consent = "To submit this form, please consent to being contacted";
-      setErrors(newErrors);
-      if (Object.keys(newErrors).length === 0) {
-        setIsModalOpen(true);
-        console.log("Form submitted");
-      }
-    };
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedQueryType, setSelectedQueryType] = useState('');
+  const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    if (!firstName.trim()) newErrors.firstName = "This field is required";
+    if (!lastName.trim()) newErrors.lastName = "This field is required";
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim()) {
+      newErrors.email = "This field is required";
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!selectedQueryType) newErrors.queryType = "Please select a query type";
+    if (!message.trim()) newErrors.message = "This field is required";
+    if (!isChecked) newErrors.consent = "To submit this form, please consent to being contacted";
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      setIsModalOpen(true);
+      console.log("Form submitted");
+    }
+  };
 
   return (
     <div className='flex justify-center h-screen items-center' role="main">
-        {isModalOpen && (
-      <div className="absolute text-white top-46 bg-[var(--Grey-900-darker)] border rounded-xl p-6 shadow-lg m-4 md:m-0">
-      <div className="flex items-center gap-2 mb-2">
-        <img className="block" src={emailSent} alt="Email sent icon" />
-        <p className="font-bold">Message Sent!</p>
-      </div>
-      <p>Thanks for completing the form. We'll be in touch soon!</p>
-    </div>
+      {isModalOpen && (
+        <div className="absolute text-white top-46 bg-[var(--Grey-900-darker)] border rounded-xl p-6 shadow-lg m-4 md:m-0">
+          <div className="flex items-center gap-2 mb-2">
+            <img className="block" src={emailSent} alt="Email sent icon" />
+            <p className="font-bold">Message Sent!</p>
+          </div>
+          <p>Thanks for completing the form. We'll be in touch soon!</p>
+        </div>
       )}
       <form onSubmit={handleSubmit} className='rounded-lg bg-white p-12 w-[46rem] flex flex-col gap-6'>
         <h1 className="text-2xl font-bold text-gray-900">Contact Us</h1>
@@ -115,20 +115,26 @@ function App() {
           {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
         </div>
         <div>
-        <div className="flex items-center gap-2">
-          <input type="checkbox" id="custom-checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)}
-            className="sr-only peer" />
-          <label htmlFor="custom-checkbox"
-            className="w-3 h-3 cursor-pointer flex items-center justify-center border border-[var(--Grey-900-darker)] peer-checked:border-[var(--Green-600-medium)] peer-focus:outline peer-focus:outline-1 peer-focus:outline-[var(--Green-600-medium)]">
-            {isChecked && <img src={checkmarkIcon} alt="Checked" className="w-3 h-3 cursor-pointer" />}
-          </label>
-          <span className="text-gray-800">
-            I consent to being contacted by the team <span className="text-green-600">*</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" id="custom-checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)}
+              className="sr-only peer" />
+            <label
+              htmlFor="custom-checkbox"
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <span
+                className="w-3 h-3 flex items-center justify-center border border-[var(--Grey-900-darker)] peer-checked:border-[var(--Green-600-medium)] peer-focus:outline peer-focus:outline-1 peer-focus:outline-[var(--Green-600-medium)]"
+              >
+                {isChecked && <img src={checkmarkIcon} alt="Checked" className="w-3 h-3" />}
+              </span>
+              <span className="text-gray-800">
+                I consent to being contacted by the team <span className="text-green-600">*</span>
+              </span>
+            </label>
           </div>
           {errors.consent && <p className="text-red-500 text-sm">{errors.consent}</p>}
         </div>
-        
+
         <button type="submit"
           className="cursor-pointer w-[100%] p-3 bg-[var(--Green-600-medium)] rounded-xl text-white hover:bg-[var(--Grey-900-darker)]">
           Submit
