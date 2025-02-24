@@ -40,7 +40,7 @@ function App() {
   return (
     <div className='flex justify-center h-screen items-center' role="main">
         {isModalOpen && (
-      <div className="absolute text-white top-46 bg-[var(--Grey-900-darker)] border rounded-xl p-6 shadow-lg">
+      <div className="absolute text-white top-46 bg-[var(--Grey-900-darker)] border rounded-xl p-6 shadow-lg m-4 md:m-0">
       <div className="flex items-center gap-2 mb-2">
         <img className="block" src={emailSent} alt="Email sent icon" />
         <p className="font-bold">Message Sent!</p>
@@ -50,8 +50,8 @@ function App() {
       )}
       <form onSubmit={handleSubmit} className='rounded-lg bg-white p-12 w-[46rem] flex flex-col gap-6'>
         <h1 className="text-2xl font-bold text-gray-900">Contact Us</h1>
-        <div className="flex flex-row gap-4">
-          <div className="w-[50%]">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-full md:w-[50%]">
             <label htmlFor="first-name" className="block text-sm">
               Full Name <span className="text-green-600">*</span>
             </label>
@@ -60,7 +60,7 @@ function App() {
               type="text" id="first-name" name="firstName" autoComplete="given-name" />
             {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
           </div>
-          <div className="w-[50%]">
+          <div className="w-full md:w-[50%]">
             <label htmlFor="last-name" className="block text-sm">
               Last Name <span className="text-green-600">*</span>
             </label>
@@ -81,9 +81,9 @@ function App() {
         </div>
         <div>
           <label className="block text-sm">Query Type <span className="text-green-600">*</span></label>
-          <div className="flex flex-row gap-4 mt-2">
+          <div className="flex flex-col md:flex-row gap-4 mt-2">
             <label onClick={() => setSelectedQueryType('general')}
-              className={`flex items-center gap-2 border border-[var(--Grey-900-darker)] rounded-lg p-2 w-[50%] cursor-pointer ${selectedQueryType === 'general' ? 'bg-[var(--Green-200-lighter)]' : ''} focus-within:outline focus-within:outline-1 focus-within:outline-green-600`}>
+              className={`flex items-center gap-2 border border-[var(--Grey-900-darker)] rounded-lg p-2 w-full md:w-[50%] cursor-pointer ${selectedQueryType === 'general' ? 'bg-[var(--Green-200-lighter)]' : ''} focus-within:outline focus-within:outline-1 focus-within:outline-green-600`}>
               <input type="radio" name="queryType" value="general" className="sr-only peer"
                 checked={selectedQueryType === 'general'} onChange={() => setSelectedQueryType('general')} />
               <span className="ml-2 mr-1 w-5 h-5 flex items-center justify-center border-2 border-gray-400 rounded-full peer-checked:hidden"></span>
@@ -93,7 +93,7 @@ function App() {
               General Enquiry
             </label>
             <label onClick={() => setSelectedQueryType('support')}
-              className={`flex items-center gap-2 border border-[var(--Grey-900-darker)] rounded-lg p-2 w-[50%] cursor-pointer ${selectedQueryType === 'support' ? 'bg-[var(--Green-200-lighter)]' : ''} focus-within:outline focus-within:outline-1 focus-within:outline-green-600`}>
+              className={`flex items-center gap-2 border border-[var(--Grey-900-darker)] rounded-lg p-2 w-full md:w-[50%] cursor-pointer ${selectedQueryType === 'support' ? 'bg-[var(--Green-200-lighter)]' : ''} focus-within:outline focus-within:outline-1 focus-within:outline-green-600`}>
               <input type="radio" name="queryType" value="support" className="sr-only peer"
                 checked={selectedQueryType === 'support'} onChange={() => setSelectedQueryType('support')} />
               <span className="ml-2 mr-1 w-5 h-5 flex items-center justify-center border-2 border-gray-400 rounded-full peer-checked:hidden"></span>
