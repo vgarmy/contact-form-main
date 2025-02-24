@@ -45,7 +45,7 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - [React](https://reactjs.org/) - JS library
-- [Styled Components](https://styled-components.com/) - For styles
+- Tailwind CSS
 - Vite
 
 ## Author
